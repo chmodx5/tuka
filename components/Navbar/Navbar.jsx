@@ -9,6 +9,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import Navmenu from "./Navmenu";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import Search from "./Search";
 
 const Navbar = () => {
   const router = useRouter();
@@ -32,6 +33,11 @@ const Navbar = () => {
                 </h1>
               </a>
             </Link>
+          </div>
+
+          {/* the search bar component  */}
+          <div>
+            <Search />
           </div>
 
           <div className="md:flex items-center hidden ">
@@ -106,6 +112,8 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      {/* navbar menu below the original one  */}
       <div className="bg-gray-900">
         <div className="container mx-auto">
           <div className=" text-white">
