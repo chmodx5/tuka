@@ -29,14 +29,14 @@ export default function ThemeSwitch() {
     <div className="flex items-center">
       {colorTheme === "light" ? (
         <button
-          className=" hover:text-primary-default"
+          className=" hover:text-primary-default flex items-center justify-center h-10 w-10 "
           onClick={() => setTheme("light")}
         >
           <FaRegSun />
         </button>
       ) : (
         <button
-          className=" hover:text-primary-default"
+          className=" hover:text-primary-default flex items-center justify-center h-10 w-10 "
           onClick={() => setTheme("dark")}
         >
           <FaRegMoon />
