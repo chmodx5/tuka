@@ -4,6 +4,7 @@ import { Drawer } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import Link from "next/link";
+import Cart from "../Cart/Cart";
 
 const Search = () => {
   const [open, setOpen] = React.useState(false);
@@ -34,20 +35,21 @@ const Search = () => {
                   </h1>
                 </a>
               </Link>
-
-              <form
-                action=""
-                className="outline outline-1 outline-gray-300 rounded-md flex gap-2 pl-2"
-              >
-                <input
-                  type="text"
-                  name="search"
-                  className=" min-w-[15em] focus:outline-0 focus:bg-white"
-                />
-                <button type="submit" className="p-2">
-                  <FaSearch />
-                </button>
-              </form>
+              <div className="flex-1 ">
+                <form
+                  action=""
+                  className=" w-6/12  outline outline-1 outline-gray-300 rounded-md flex gap-2 pl-2 mx-auto"
+                >
+                  <input
+                    type="text"
+                    name="search"
+                    className="w-full focus:outline-0 focus:bg-white"
+                  />
+                  <button type="submit" className="p-2">
+                    <FaSearch />
+                  </button>
+                </form>
+              </div>
 
               <div className="flex">
                 <Link href="/" passHref>
@@ -55,12 +57,6 @@ const Search = () => {
                     <AiOutlineUser />
                   </span>
                 </Link>
-                <button
-                  className="text-xl h-10 w-10 flex items-center justify-center "
-                  onClick={toggleDrawer(true)}
-                >
-                  <FiShoppingCart />
-                </button>
               </div>
             </div>
             {/* end of top form section  */}
@@ -68,7 +64,7 @@ const Search = () => {
             {/* Bottom form section with results */}
             <div className="container mx-auto mt-4">
               <p className="text-center pb-4">
-                Results for : <span className="font-semibold"></span> smth
+                Results for : <span className="font-semibold">smth</span>
               </p>
               <div>
                 results: Lorem ipsum dolor sit amet consectetur adipisicing
@@ -78,7 +74,7 @@ const Search = () => {
               </div>
               <p className="text-center pt-4">
                 <Link href="/" passHref>
-                  <div className="bg-black text-white uppercase rounded-full py-2 px-4 hover:scale-110 inline-block">
+                  <div className="bg-black text-white uppercase rounded-full py-2 px-4 text-sm hover:cursor-pointer inline-block">
                     more results
                   </div>
                 </Link>

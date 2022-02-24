@@ -10,15 +10,11 @@ import Navmenu from "./Navmenu";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Search from "./Search";
+import Cart from "../Cart/Cart";
 
 const Navbar = () => {
   const router = useRouter();
   const [mobilemenu, setMobilemenu] = useState(false);
-  const [open, setOpen] = React.useState(false);
-
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
 
   return (
     <nav className=" shadow-lg fixed bg-white dark:bg-gray-900 dark:text-white w-full z-50 ">
@@ -46,37 +42,7 @@ const Navbar = () => {
                 <AiOutlineUser />
               </button>
 
-              <>
-                <button
-                  className="text-xl h-10 w-10 flex items-center justify-center "
-                  onClick={toggleDrawer(true)}
-                >
-                  <FiShoppingCart />
-                </button>
-                <Drawer
-                  anchor="right"
-                  open={open}
-                  onClose={toggleDrawer(false)}
-                >
-                  <div className=" w-[30em] px-10 py-8">
-                    <div className="flex justify-between items-center pb-4">
-                      <h3 className="font-semibold text-2xl">Shopping Cart</h3>
-                      <button
-                        onClick={toggleDrawer(false)}
-                        className="text-3xl"
-                      >
-                        <FaTimes />
-                      </button>
-                    </div>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ratione omnis aliquid perspiciatis delectus quaerat quam
-                      veritatis unde dolore, ex amet, suscipit id quod facere
-                      doloremque ab! Sed maxime laudantium voluptas.
-                    </p>
-                  </div>
-                </Drawer>
-              </>
+              <Cart />
               <ThemeSwitch />
             </div>
           </div>
