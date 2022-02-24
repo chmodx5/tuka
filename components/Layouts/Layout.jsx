@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <header>
         <Navbar />
       </header>
-      <main className=" flex-1">{children}</main>
+      <main className=" flex-1 container mx-auto mt-24">{children}</main>
       <footer>
         <Footer />
       </footer>
