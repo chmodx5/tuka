@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.app__section {
+  @apply py-10;
+}
 .app__section-heading {
-  @apply font-semibold text-center text-3xl;
+  @apply font-semibold text-center text-3xl mb-10;
 }
