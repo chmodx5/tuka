@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app__section-heading {
+  @apply font-semibold text-center text-3xl;
+}

@@ -41,9 +41,7 @@ const RecommendedProducts = () => {
   return (
     <section className="py-10">
       <div className="mb-10">
-        <h2 className="font-semibold text-center text-3xl">
-          Recommended products
-        </h2>
+        <h2 className="app__section-heading">Recommended products</h2>
       </div>
       <Slider {...settings} className="gap-10 first:pl-0">
         {Array.from({ length: 10 }, (_, i) => (
