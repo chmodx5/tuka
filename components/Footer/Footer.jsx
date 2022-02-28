@@ -5,11 +5,20 @@ const Footer = () => {
   return (
     <footer className="bg-gray-200 py-10 w-full">
       <div className="container mx-auto">
-        <div
-          className="grid grid-cols-1 sm
-        :grid-cols-2 md:grid-cols-4"
-        >
-          <div>
+        <div className="grid grid-cols-12">
+          <div className="col-span-4">
+            <h2 className="footer__section-heading">Subcribe</h2>
+            <p className="text-sm">Our conversation is just getting started</p>
+            <form className="footer__form">
+              <input
+                type="email"
+                className="footer__input"
+                placeholder="Email"
+              />
+              <button className="footer__button">Subscribe</button>
+            </form>
+          </div>
+          <div className="col-span-2">
             <h3 className="footer__group-heading">Company</h3>
             <ul>
               <li>
@@ -34,7 +43,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="col-span-2">
             <h3 className="footer__group-heading">Information</h3>
             <ul>
               <li>
@@ -54,7 +63,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="col-span-2">
             <h3 className="footer__group-heading">Contact</h3>
             <ul>
               <li>
@@ -79,7 +88,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="col-span-2">
             <h3 className="footer__group-heading">Follow</h3>
             <ul>
               <li>
