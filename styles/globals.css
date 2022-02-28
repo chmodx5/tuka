@@ -14,8 +14,8 @@
   @apply font-semibold text-center text-3xl mb-10;
 }
 .footer__group-heading {
-  @apply font-semibold uppercase text-lg;
+  @apply font-semibold uppercase text-base;
 }
-.footer__group-item {
-  @apply font-semibold text-sm;
+.footer_group-link {
+  @apply text-gray-600 hover:text-gray-900 text-sm;
 }
