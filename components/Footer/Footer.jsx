@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { FaAngleRight, FaRegEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -10,12 +11,15 @@ const Footer = () => {
             <h2 className="footer__section-heading">Subcribe</h2>
             <p className="text-sm">Our conversation is just getting started</p>
             <form className="footer__form">
+              <FaRegEnvelope />
               <input
                 type="email"
                 className="footer__input"
                 placeholder="Email"
               />
-              <button className="footer__button">Subscribe</button>
+              <button className="footer__button">
+                <FaAngleRight />
+              </button>
             </form>
           </div>
           <div className="col-span-2">
