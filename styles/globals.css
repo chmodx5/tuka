@@ -13,3 +13,9 @@
 .app__section-heading {
   @apply font-semibold text-center text-3xl mb-10;
 }
+.footer__group-heading {
+  @apply font-semibold uppercase text-lg;
+}
+.footer__group-item {
+  @apply font-semibold text-sm;
+}
