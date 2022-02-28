@@ -4,7 +4,7 @@ import { FaAngleRight, FaRegEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 py-10 w-full">
+    <footer className="bg-gray-200 py-20 w-full">
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
           <div className="col-span-4">
