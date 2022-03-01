@@ -3,11 +3,35 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import AppTabs from "../../components/AppTab/AppTabs";
 
 const ProductDetails = () => {
   const router = useRouter();
   const [product, setProduct] = useState([]);
   const [counter, setCounter] = useState(0);
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   useEffect(() => {
     axios
       .get(`https://fakestoreapi.com/products/${router.query.id}`)
@@ -20,6 +44,7 @@ const ProductDetails = () => {
     <>
       {product.title ? (
         <div>
+          {/* top section with product images  */}
           <div className="grid grid-cols-12 ">
             <div className="col-span-1 flex flex-col gap-y-2">
               <div className="border border-black p-2">
@@ -57,14 +82,39 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="col-span-5 group">
-              <div className="bg-blue-300 relative aspect-square">
-                <Image
-                  src={product.image}
-                  alt="alt"
-                  className="w-full h-full object-center object-cover "
-                  layout="fill"
-                  priority
-                />
+              <div className=" bg-gray-500">
+                <Carousel responsive={responsive}>
+                  <div className="h-full w-full bg-red-900">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Assumenda, itaque. Aspernatur soluta labore possimus
+                    excepturi, mollitia consequatur impedit odit placeat ducimus
+                    dolorum eveniet maiores beatae iste fugiat quidem expedita
+                    repellendus.
+                  </div>
+                  <div className="h-full bg-green-900">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Assumenda, itaque. Aspernatur soluta labore possimus
+                    excepturi, mollitia consequatur impedit odit placeat ducimus
+                    dolorum eveniet maiores beatae iste fugiat quidem expedita
+                    repellendus.
+                  </div>
+                  <div className="h-full bg-blue-900">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Assumenda, itaque. Aspernatur soluta labore possimus
+                    excepturi, mollitia consequatur impedit odit placeat ducimus
+                    dolorum eveniet maiores beatae iste fugiat quidem expedita
+                    repellendus.
+                  </div>
+                  <div className="bg-blue-300 relative h-['30em'] aspect-square">
+                    <Image
+                      src={product.image}
+                      alt="alt"
+                      className="w-full h-full object-center object-cover "
+                      layout="fill"
+                      priority
+                    />
+                  </div>
+                </Carousel>
               </div>
             </div>
             <div className="col-span-6 pl-10 pt-10">
@@ -108,6 +158,11 @@ const ProductDetails = () => {
                 <p className="mt-10">{product.description}</p>
               </div>
             </div>
+          </div>
+
+          {/* sectioon with more description tabs */}
+          <div>
+            <AppTabs></AppTabs>
           </div>
         </div>
       ) : (
