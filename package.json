@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.5",
     "@mui/material": "^5.4.3",
