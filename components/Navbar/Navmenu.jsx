@@ -1,15 +1,26 @@
 import { Menu, Transition } from "@headlessui/react";
+import axios from "axios";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
 import { HiChevronDown } from "react-icons/hi";
 
 const Navmenu = () => {
+  const [category, setCategory] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products/categories")
+      .then((response) => {
+        setCategory(response.data);
+      });
+    console.log("category", category);
+  }, []);
+
   return (
     <div className=" text-right  ">
       <Menu as="div" className="relative  inline-block text-left">
         <div>
           <Menu.Button className="inline-flex justify-center w-full px-2 py-2  font-semibold text-white  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 uppercase items-center">
-            Options
+            category
             <div
               className="w-5 h-5 ml-2 -mr-1 text-xl hover:text-violet-100 flex items-center justify-center"
               aria-hidden="true"
@@ -29,18 +40,40 @@ const Navmenu = () => {
         >
           <Menu.Items className="absolute w-auto mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none">
             <div className="px-1 py-1 min-w-max">
-              <Menu.Item>
+              {category ? (
+                category.map((category) => (
+                  <Menu.Item key={category}>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active ? " bg-gray-900  text-white" : "text-gray-900"
+                        } group capitalize flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      >
+                        {category}
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))
+              ) : (
+                <button
+                  className={` "bg-violet-500 text-white" : "text-gray-900"
+                     group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                >
+                  loading ..
+                </button>
+              )}
+
+              {/* <Menu.Item>
                 {({ active }) => (
                   <button
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    Edit Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Asperiores, numquam.
+                    dfdsfdfadsf
                   </button>
                 )}
-              </Menu.Item>
+              </Menu.Item> */}
             </div>
           </Menu.Items>
         </Transition>
