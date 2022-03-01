@@ -17,14 +17,14 @@
   @apply font-semibold text-3xl mb-5;
 }
 .footer__form {
-  @apply items-center bg-white inline-flex px-4 py-2 gap-3 rounded-full mt-6;
+  @apply items-center bg-white dark:bg-gray-900 inline-flex px-4 py-2 gap-3 rounded-full mt-6 outline dark:outline-white;
 }
 .footer__input {
-  @apply focus:outline-0;
+  @apply focus:outline-0 dark:bg-gray-900;
 }
 .footer__group-heading {
   @apply font-semibold uppercase text-base mb-4;
 }
 .footer_group-link {
-  @apply text-gray-600 hover:text-gray-900 text-sm;
+  @apply text-gray-600 capitalize dark:text-gray-400 dark:hover:text-white hover:text-gray-900 text-sm;
 }
