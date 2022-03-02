@@ -6,12 +6,13 @@ import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import AppTabs from "../../components/AppTab/AppTabs";
+import { ContactsOutlined } from "@mui/icons-material";
 
 const ProductDetails = () => {
   const router = useRouter();
   const [product, setProduct] = useState([]);
   const [counter, setCounter] = useState(0);
-  const [productid, setProductid] = useState(router.query.id);
+  const [productid, setProductid] = useState(0);
 
   const responsive = {
     superLargeDesktop: {
@@ -35,19 +36,22 @@ const ProductDetails = () => {
 
   useEffect(() => {
     setProductid(router.query.id);
-  }, [router.query.id]);
 
-  useEffect(() => {
-    console.log(router.query);
-    axios
-      .get(`https://fakestoreapi.com/products/${productid}`)
-      .then((response) => {
-        setProduct(response.data);
-      });
-  }, [productid]);
+    if (productid) {
+      console.log(productid);
+      axios
+        .get(`https://fakestoreapi.com/products/${productid}`)
+        .then((response) => {
+          setProduct(response.data);
+        });
+    } else {
+      console.log("no product id");
+    }
+  }, [router.query.id, productid]);
 
   return (
     <>
+      <h1>-----{productid}</h1>
       {product.title ? (
         <div>
           {/* top section with product images  */}

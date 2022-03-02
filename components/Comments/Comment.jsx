@@ -3,7 +3,7 @@ import Rating from "../Rating/AppRating";
 
 const Comment = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 bg-gray-100">
       <Rating small />
       <div className="mt-5">
         <p className="mb-3">
