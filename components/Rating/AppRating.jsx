@@ -1,33 +1,44 @@
-import { useState } from "react";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
-import StarIcon from "@mui/icons-material/Star";
+import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 
-export default function AppRating() {
-  const [value, setValue] = useState(2);
-  const [hover, setHover] = useState(-1);
-
+export default function AppRating({ small }) {
+  let rating = 4.2;
   return (
-    <div className="">
-      <Rating
-        name="hover-feedback"
-        value={value}
-        precision={0.5}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
-        emptyIcon={
-          <StarIcon
-            className="text-black "
-            style={{ opacity: 0.55 }}
-            fontSize="inherit"
-          />
-        }
-      />
-      {value !== null && <Box sx={{ ml: 2 }}>Based on 4 reviews</Box>}
+    <div className={`flex gap-2 ${small ? "text-xs" : "text-xl"}`}>
+      {rating >= 1 ? (
+        <FaStar className=" text-primary" />
+      ) : rating >= 0.5 ? (
+        <FaStarHalfAlt className=" text-primary" />
+      ) : (
+        <FaRegStar className=" text-primary" />
+      )}
+      {rating >= 2 ? (
+        <FaStar className=" text-primary" />
+      ) : rating >= 1.5 ? (
+        <FaStarHalfAlt className=" text-primary" />
+      ) : (
+        <FaRegStar className=" text-primary" />
+      )}
+      {rating >= 3 ? (
+        <FaStar className=" text-primary" />
+      ) : rating >= 2.5 ? (
+        <FaStarHalfAlt />
+      ) : (
+        <FaRegStar className=" text-primary" />
+      )}
+      {rating >= 4 ? (
+        <FaStar className=" text-primary" />
+      ) : rating >= 3.5 ? (
+        <FaStarHalfAlt className=" text-primary" />
+      ) : (
+        <FaRegStar className=" text-primary" />
+      )}
+      {rating >= 5 ? (
+        <FaStar className=" text-primary" />
+      ) : rating >= 4.5 ? (
+        <FaStarHalfAlt className=" text-primary" />
+      ) : (
+        <FaRegStar className=" text-primary" />
+      )}
     </div>
   );
 }
