@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const router = useRouter();
   const [product, setProduct] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [productid, setProductid] = useState(router.query.id);
 
   const responsive = {
     superLargeDesktop: {
@@ -33,13 +34,18 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
+    setProductid(router.query.id);
+  }, [router.query.id]);
+
+  useEffect(() => {
+    console.log(router.query);
     axios
-      .get(`https://fakestoreapi.com/products/${router.query.id}`)
+      .get(`https://fakestoreapi.com/products/${productid}`)
       .then((response) => {
         setProduct(response.data);
       });
-    console.log("category", product);
-  }, []);
+  }, [productid]);
+
   return (
     <>
       {product.title ? (
