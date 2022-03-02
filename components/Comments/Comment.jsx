@@ -4,7 +4,7 @@ import Rating from "../Rating/AppRating";
 const Comment = () => {
   return (
     <div className="py-5 px-3 rounded bg-gray-100 my-2">
-      <Rating small />
+      <Rating small rating={3.5} />
       <div className="mt-1">
         <p className="mb-3">
           <span className="font-bold">Someone </span> on Jul 14,2022

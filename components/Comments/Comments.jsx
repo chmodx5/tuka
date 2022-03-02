@@ -5,8 +5,10 @@ import Comment from "./Comment";
 const Comments = () => {
   return (
     <div>
-      <h3 className="text-2xl font-bold mb-10">Reviews </h3>
-      <Rating />
+      <h3 className="text-3xl font-bold ">Customer Reviews </h3>
+      <div className="py-10">
+        <Rating />
+      </div>
       <Comment />
       <Comment />
       <Comment />

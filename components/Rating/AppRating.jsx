@@ -1,7 +1,6 @@
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 
-export default function AppRating({ small }) {
-  let rating = 4.2;
+export default function AppRating({ small, rating }) {
   return (
     <div className={`flex gap-2 ${small ? "text-xs" : "text-xl"}`}>
       {rating >= 1 ? (
