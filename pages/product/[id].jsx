@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [counter, setCounter] = useState(0);
-  const [productid, setProductid] = useState(0);
+  const [productid, setProductid] = useState(null);
 
   const responsive = {
     superLargeDesktop: {
@@ -33,70 +33,34 @@ const ProductDetails = () => {
       items: 1,
     },
   };
-
   useEffect(() => {
     setProductid(router.query.id);
+  }, [router.query.id]);
 
-    if (productid) {
-      console.log(productid);
+  console.log("productid", productid);
+
+  useEffect(() => {
+    if (productid !== null) {
       axios
-        .get(`http://localhost:3000/api/product/${productid}`)
+        .get(`http://localhost:3000/products/product/${productid}`)
         .then((response) => {
           setProduct(response.data);
           console.log("setProduct");
-          console.log("product: " + response.data + "product" + product);
+          console.log(response.data);
         });
     } else {
       console.log("no product id");
     }
-  }, [router.query.id, productid, product]);
+  }, [productid]);
 
   return (
     <>
-      <h1>-----{productid} --</h1>
-      {product ? <p>{product.name}</p> : <p>loading...</p>}
-
       {product ? (
-        <div>
+        <div className="app__section">
           {/* top section with product images  */}
 
-          <div className="grid grid-cols-12 ">
-            <div className="col-span-1 flex flex-col gap-y-2">
-              <div className="border border-black p-2">
-                <div className="bg-blue-300 relative aspect-square">
-                  <Image
-                    src={product.image}
-                    alt="alt"
-                    className="w-full h-full object-center object-cover "
-                    layout="fill"
-                    priority
-                  />
-                </div>
-              </div>
-              <div className="border border-black p-2">
-                <div className="bg-blue-300 relative aspect-square">
-                  <Image
-                    src={product.image}
-                    alt="alt"
-                    className="w-full h-full object-center object-cover "
-                    layout="fill"
-                    priority
-                  />
-                </div>
-              </div>
-              <div className="border border-black p-2">
-                <div className="bg-blue-300 relative aspect-square">
-                  <Image
-                    src={product.image}
-                    alt="alt"
-                    className="w-full h-full object-center object-cover "
-                    layout="fill"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-span-5 group">
+          <div className="grid grid-cols-12 gap-10">
+            <div className="col-span-12 md:col-span-10 lg:col-span-6 group">
               <div className=" bg-gray-500">
                 <Carousel responsive={responsive}>
                   <div className="bg-blue-300 relative h-['30em'] aspect-square">
@@ -112,9 +76,23 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <div className="col-span-6 pl-10 pt-10">
+            <div className="col-span-12 md:col-span-1  md:order-first flex flex-col gap-y-2">
+              <div className="border w-2/12 md:w-full border-black p-1">
+                <div className="bg-blue-300 relative aspect-square">
+                  <Image
+                    src={product.image}
+                    alt="alt"
+                    className="w-full h-full object-center object-cover "
+                    layout="fill"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-5">
               <p className="text-base text-gray-400 capitalize mb-4">
-                {product.category}
+                {product.category.name}
               </p>
               <h4 className="font-semibold capitalize text-2xl mb-6">
                 {product.name}
@@ -128,21 +106,21 @@ const ProductDetails = () => {
               <div className="flex gap-3 py-14">
                 <div className="flex gap-4 items-center text-2xl font-bold">
                   <button
-                    className="font-bold  bg-gray-300 inline-block h-10 w-10  "
+                    className="font-bold  bg-gray-200 inline-block h-10 w-10  "
                     onClick={() => setCounter(counter - 1)}
                   >
                     -
                   </button>
                   <div> {counter} </div>
                   <button
-                    className="font-bold  bg-gray-300 inline-block h-10 w-10 "
+                    className="font-bold  bg-gray-200 inline-block h-10 w-10 "
                     onClick={() => setCounter(counter + 1)}
                   >
                     +
                   </button>
                 </div>
                 <Link href="/" passHref>
-                  <button className="app__btn-outline w-full">
+                  <button className="app__btn-outline w-full text-white bg-gray-900">
                     add to cart
                   </button>
                 </Link>
