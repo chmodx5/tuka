@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const RecommendedProducts = () => {
+const RecommendedProducts = ({ products }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -42,12 +42,23 @@ const RecommendedProducts = () => {
     <section className="app__section">
       <h2 className="app__section-heading">Recommended products</h2>
 
-      <Slider {...settings} className="gap-10 first:pl-0">
-        {Array.from({ length: 10 }, (_, i) => (
-          <div className="px-2">
-            <Product />
-          </div>
-        ))}
+      <Slider {...settings} className="grid gap-10 first:pl-0">
+        {products !== null &&
+          products.map((product) => (
+            <div
+              key={product.id}
+              className="pr-10 group  group-first:pr-10 group-last:pr-0"
+            >
+              <Product
+                key={product.id}
+                id={product.id}
+                category={products.category}
+                img={product.image}
+                price={product.price}
+                title={product.name}
+              />
+            </div>
+          ))}
       </Slider>
     </section>
   );

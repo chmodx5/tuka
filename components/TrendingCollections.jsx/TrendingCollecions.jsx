@@ -6,11 +6,9 @@ const TrendingCollecions = () => {
   const [categorys, setCategorys] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/products/categories")
-      .then((response) => {
-        setCategorys(response.data);
-      });
+    axios.get("http://localhost:3000/categories/featured").then((response) => {
+      setCategorys(response.data);
+    });
     console.log("category", categorys, "end category");
   }, []);
   return (
