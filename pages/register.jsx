@@ -1,12 +1,36 @@
 import Link from "next/link";
+import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const router = useRouter();
+
+  const submit = async (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/auth/register", {
+        username: name,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        router.push("/Login");
+        console.log(response);
+      });
+  };
+
   return (
     <div className="flex justify-center py-20">
       <div className=" max-w-2xl">
         <h1 className=" mb-10 text-2xl font-bold">Sign up</h1>
 
-        <form action="">
+        <form onSubmit={submit}>
           <div className="grid grid-cols-12 gap-4">
             <label className="col-span-3" htmlFor="">
               Username
@@ -16,6 +40,7 @@ const Register = () => {
               name="email"
               id=""
               className="form__input col-span-9"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <br />
@@ -28,6 +53,7 @@ const Register = () => {
               name="email"
               id=""
               className="form__input col-span-9"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <br />
@@ -39,12 +65,15 @@ const Register = () => {
               type="password"
               name="password"
               className="form__input col-span-9"
+              onChange={(e) => setPassword(e.target.value)}
               id=""
             />
           </div>
           <br />
           <div className="">
-            <button className="app__btn-outline w-full">SIgn up</button>
+            <button type="submit" className="app__btn-outline w-full">
+              SIgn up
+            </button>
           </div>
         </form>
         <br />

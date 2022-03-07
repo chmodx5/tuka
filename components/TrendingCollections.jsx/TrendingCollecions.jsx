@@ -18,9 +18,11 @@ const TrendingCollecions = () => {
       <h1 className="app__section-heading">Trending Collections</h1>
       <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
         {categorys &&
-          categorys.map((category) => (
-            <Collection title={category.name} key={category.id} />
-          ))}
+          categorys
+            .slice(0, 5)
+            .map((category) => (
+              <Collection title={category.name} key={category.id} />
+            ))}
       </div>
     </section>
   );

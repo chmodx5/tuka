@@ -38,10 +38,10 @@ const Navbar = () => {
 
           <div className="md:flex items-center hidden ">
             <div className=" flex space-x-2 ">
-              <Link href="/login" passHref>
-                <button className="text-xl h-10 w-10 flex items-center justify-center ">
+              <Link href="/Login" passHref>
+                <a className="text-xl h-10 w-10 flex items-center justify-center ">
                   <AiOutlineUser />
-                </button>
+                </a>
               </Link>
 
               <Cart />

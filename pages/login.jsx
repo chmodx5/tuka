@@ -1,12 +1,30 @@
 import Link from "next/link";
+import { useState } from "react";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("email", email, "password", password);
+  };
+
   return (
     <div className=" flex justify-center py-20">
       <div className="grid grid-cols-12 gap-10 max-w-4xl">
         <div className="  col-span-6">
           <h1 className=" mb-10 text-2xl font-bold">Login</h1>
 
-          <form action="">
+          <form action="" onSubmit={onSubmit}>
             <div className="grid grid-cols-12 gap-4">
               <label className="col-span-3" htmlFor="">
                 Email
@@ -14,6 +32,8 @@ export default function Login() {
               <input
                 type="text"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id=""
                 className="form__input col-span-9"
               />
@@ -26,13 +46,19 @@ export default function Login() {
               <input
                 type="password"
                 name="password"
+                value={password}
+                onChange={handleChange}
                 className="form__input col-span-9"
                 id=""
               />
             </div>
             <br />
             <div className="">
-              <button className="app__btn-outline w-full">Login</button>
+              <input
+                type="submit"
+                value="login"
+                className="app__btn-outline w-full"
+              />
             </div>
           </form>
           <br />
