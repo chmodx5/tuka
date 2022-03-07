@@ -3,7 +3,7 @@ import Link from "next/link";
 const Register = () => {
   return (
     <div className="flex justify-center py-20">
-      <div className=" max-w-lg">
+      <div className=" max-w-2xl">
         <h1 className=" mb-10 text-2xl font-bold">Sign up</h1>
 
         <form action="">

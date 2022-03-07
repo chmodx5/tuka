@@ -6,17 +6,14 @@ const Collection = ({ title }) => {
     <div>
       <div>
         <div className="w-1/2 mx-auto group mb-5">
-          <div className=" relative aspect-square">
+          <div className="bg-gray-200 rounded-full relative aspect-square">
             <Image
               src="/collection-image.png"
               alt="alt"
-              className="w-full h-full object-center object-cover z-0 "
+              className="w-full rounded-full h-full object-center object-cover z-0 "
               layout="fill"
               priority
             />
-            <div className=" -z-10 group flex justify-center py-3 items-cente absolute h-full bottom-0 w-full ">
-              <div className="rounded-full group-hover:scale-110 aspect-square w-full bg-gray-200"></div>
-            </div>
           </div>
         </div>
         <h5 className="font-semibold text-center">
