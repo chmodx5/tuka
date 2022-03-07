@@ -12,7 +12,7 @@
   @apply outline outline-2 px-4 py-2 rounded-sm uppercase font-semibold dark:bg-white dark:text-gray-900;
 }
 .app__section {
-  @apply py-10;
+  @apply py-10 px-6;
 }
 .app__section-heading {
   @apply font-semibold text-center text-3xl mb-10;

@@ -17,7 +17,7 @@ const TrendingCollecions = () => {
       <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
         {categorys &&
           categorys
-            .slice(0, 5)
+            .slice(0, 6)
             .map((category) => (
               <Collection title={category.name} key={category.id} />
             ))}
