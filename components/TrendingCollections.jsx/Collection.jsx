@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-const Collection = () => {
+const Collection = ({ title }) => {
   return (
     <div>
       <div>
-        <div className="w-full group mb-5">
+        <div className="w-1/2 mx-auto group mb-5">
           <div className=" relative aspect-square">
             <Image
               src="/collection-image.png"
@@ -20,7 +20,7 @@ const Collection = () => {
           </div>
         </div>
         <h5 className="font-semibold text-center">
-          Headphones <sup className=" text-xs">12</sup>
+          {title} <sup className=" text-xs">12</sup>
         </h5>
       </div>
     </div>

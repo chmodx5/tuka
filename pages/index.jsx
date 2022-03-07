@@ -6,20 +6,29 @@ import TrendingCollecions from "../components/TrendingCollections.jsx/TrendingCo
 import axios from "axios";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((response) => {
-      setProducts(response.data);
-    });
-    console.log("category", products);
+    try {
+      axios
+        .get("http://localhost:3000/api/products/featured")
+        .then((response) => {
+          setProducts(response.data);
+          console.log("featured");
+          console.log(response.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+
+  console.log("category", products);
 
   return (
     <>
       <Hero />
       <TrendingCollecions />
-      <GroupedProducts products={products} />
+      <GroupedProducts getProducts={products} />
       <RecommendedProducts />
     </>
   );

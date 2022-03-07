@@ -10,7 +10,7 @@ import { ContactsOutlined } from "@mui/icons-material";
 
 const ProductDetails = () => {
   const router = useRouter();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
   const [counter, setCounter] = useState(0);
   const [productid, setProductid] = useState(0);
 
@@ -40,21 +40,26 @@ const ProductDetails = () => {
     if (productid) {
       console.log(productid);
       axios
-        .get(`https://fakestoreapi.com/products/${productid}`)
+        .get(`http://localhost:3000/api/product/${productid}`)
         .then((response) => {
           setProduct(response.data);
+          console.log("setProduct");
+          console.log("product: " + response.data + "product" + product);
         });
     } else {
       console.log("no product id");
     }
-  }, [router.query.id, productid]);
+  }, [router.query.id, productid, product]);
 
   return (
     <>
-      <h1>-----{productid}</h1>
-      {product.title ? (
+      <h1>-----{productid} --</h1>
+      {product ? <p>{product.name}</p> : <p>loading...</p>}
+
+      {product ? (
         <div>
           {/* top section with product images  */}
+
           <div className="grid grid-cols-12 ">
             <div className="col-span-1 flex flex-col gap-y-2">
               <div className="border border-black p-2">
@@ -94,27 +99,6 @@ const ProductDetails = () => {
             <div className="col-span-5 group">
               <div className=" bg-gray-500">
                 <Carousel responsive={responsive}>
-                  <div className="h-full w-full bg-red-900">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Assumenda, itaque. Aspernatur soluta labore possimus
-                    excepturi, mollitia consequatur impedit odit placeat ducimus
-                    dolorum eveniet maiores beatae iste fugiat quidem expedita
-                    repellendus.
-                  </div>
-                  <div className="h-full bg-green-900">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Assumenda, itaque. Aspernatur soluta labore possimus
-                    excepturi, mollitia consequatur impedit odit placeat ducimus
-                    dolorum eveniet maiores beatae iste fugiat quidem expedita
-                    repellendus.
-                  </div>
-                  <div className="h-full bg-blue-900">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Assumenda, itaque. Aspernatur soluta labore possimus
-                    excepturi, mollitia consequatur impedit odit placeat ducimus
-                    dolorum eveniet maiores beatae iste fugiat quidem expedita
-                    repellendus.
-                  </div>
                   <div className="bg-blue-300 relative h-['30em'] aspect-square">
                     <Image
                       src={product.image}
@@ -127,17 +111,18 @@ const ProductDetails = () => {
                 </Carousel>
               </div>
             </div>
+
             <div className="col-span-6 pl-10 pt-10">
               <p className="text-base text-gray-400 capitalize mb-4">
-                electronics
+                {product.category}
               </p>
               <h4 className="font-semibold capitalize text-2xl mb-6">
-                title {product.title}
+                {product.name}
               </h4>
               <p className="text-xl">
                 kes: {product.price}
                 <span className="ml-3 text-lg text-gray-400 line-through">
-                  kes: 120
+                  kes: {product.slashedPrice}
                 </span>
               </p>
               <div className="flex gap-3 py-14">
@@ -169,7 +154,6 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-
           {/* sectioon with more description tabs */}
           <div>
             <AppTabs></AppTabs>

@@ -2,17 +2,18 @@ import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
+import Link from "next/link";
 
 const Navmenu = () => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products/categories")
+      .get("http://localhost:3000/api/products/categories")
       .then((response) => {
         setCategory(response.data);
       });
-    console.log("category", category);
+    console.log("category", category, "end category");
   }, []);
 
   return (
@@ -44,13 +45,20 @@ const Navmenu = () => {
                 category.map((category) => (
                   <Menu.Item key={category}>
                     {({ active }) => (
-                      <button
-                        className={`${
-                          active ? " bg-gray-900  text-white" : "text-gray-900"
-                        } group capitalize flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      <Link
+                        passHref
+                        href={`http://localhost:3000/api/products/category/${category.name}`}
                       >
-                        {category}
-                      </button>
+                        <button
+                          className={`${
+                            active
+                              ? " bg-gray-900  text-white"
+                              : "text-gray-900"
+                          } group capitalize flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                        >
+                          {category.name}
+                        </button>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))
