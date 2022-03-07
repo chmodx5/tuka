@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.form__input {
+  @apply dark:bg-gray-900 focus:outline-white outline-2 outline rounded-sm h-10 inline-block px-4;
+}
+
 .app__btn-outline {
-  @apply outline outline-1 px-4 py-2 rounded-full uppercase font-semibold hover:text-white hover:bg-gray-900;
+  @apply outline outline-2 px-4 py-2 rounded-sm uppercase font-semibold dark:bg-white dark:text-gray-900;
 }
 .app__section {
   @apply py-10;
