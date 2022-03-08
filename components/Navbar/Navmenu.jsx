@@ -8,11 +8,9 @@ const Navmenu = () => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/products/categories")
-      .then((response) => {
-        setCategory(response.data);
-      });
+    axios.get("http://localhost:3000/categories").then((response) => {
+      setCategory(response.data);
+    });
     console.log("category", category, "end category");
   }, []);
 

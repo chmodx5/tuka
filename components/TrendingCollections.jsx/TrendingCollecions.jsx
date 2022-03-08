@@ -14,7 +14,7 @@ const TrendingCollecions = () => {
   return (
     <section className="app__section">
       <h1 className="app__section-heading">Trending Collections</h1>
-      <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
+      <div className="grid grid-cols-3 gap-10 md:grid-cols-6">
         {categorys &&
           categorys
             .slice(0, 6)

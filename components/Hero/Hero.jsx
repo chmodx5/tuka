@@ -7,7 +7,7 @@ import Slide from "./Slide";
 
 const Hero = () => {
   return (
-    <section className="bg-gray-200 h-96">
+    <section className="bg-gray-100 dark:bg-gray-800 rounded-md h-96">
       <Carousel
         additionalTransfrom={0}
         arrows
@@ -52,10 +52,6 @@ const Hero = () => {
         slidesToSlide={1}
         swipeable
       >
-        <Slide />
-        <Slide />
-        <Slide />
-        <Slide />
         <Slide />
         <Slide />
         <Slide />
