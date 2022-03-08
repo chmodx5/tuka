@@ -60,12 +60,6 @@ export default function AppTabs() {
 
   return (
     <div className="w-full px-2 py-16 sm:px-0">
-      <button
-        onClick={() => console.log("clicked")}
-        className="bg-blue-500 px-2 py-2 rounded"
-      >
-        click me
-      </button>
       <Tab.Group>
         <Tab.List className="flex p-1 space-x-1 ">
           {Object.keys(categories).map((category) => (
@@ -73,11 +67,11 @@ export default function AppTabs() {
               key={category}
               className={({ selected }) =>
                 classNames(
-                  "w-full py-2.5 text-sm leading-5 font-medium text-gray-700 ",
+                  "w-full py-2.5 text-sm text-gray-800 ",
                   "",
 
                   selected
-                    ? " border-b-2 border-black text-black"
+                    ? " border-b-2 border-black font-bold text-black"
                     : "text-blue-100 hover:bg-white/[0.12] hover:text-black hover:font-bold"
                 )
               }
@@ -88,7 +82,6 @@ export default function AppTabs() {
         </Tab.List>
         <Tab.Panels className="mt-2">
           <Tab.Panel>
-            <h2 className="font-semibold  text-xl mb-4">Description </h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
               tempore cum unde voluptatum id nam. Iusto qui similique doloremque
