@@ -45,7 +45,7 @@ const Navmenu = () => {
                     {({ active }) => (
                       <Link
                         passHref
-                        href={`http://localhost:3000/api/products/category/${category.name}`}
+                        href={`http://localhost:3000/products/category/${category.name}`}
                       >
                         <button
                           className={`${

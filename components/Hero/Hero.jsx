@@ -10,7 +10,7 @@ const Hero = () => {
     <section className="bg-gray-100 dark:bg-gray-800 rounded-md h-96">
       <Carousel
         additionalTransfrom={0}
-        arrows
+        arrows={false}
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
