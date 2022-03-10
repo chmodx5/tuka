@@ -12,7 +12,7 @@ const UsersMenu = ({}) => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Tooltip title="Users Menu" disableInteractive>
-            <Menu.Button className="inline-flex justify-center items-center w-full px-2 py-2  font-semibold  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 uppercase">
+            <Menu.Button className="Navbar__icon-btn">
               <AiOutlineUser className="text-xl " />
             </Menu.Button>
           </Tooltip>
@@ -26,7 +26,7 @@ const UsersMenu = ({}) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute w-40 mt-2 origin-top-right right-0 bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none py-2 ">
+          <Menu.Items className="absolute w-40 mt-2 origin-top-right right-0 bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none ">
             <div className=" min-w-max space-y-1">
               <Menu.Item>
                 {({ active }) => (

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import ThemeSwitch from "./ThemeSwitch";
 import { FaTimes } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Tooltip } from "@mui/material";
 
 import Navmenu from "./Navmenu";
 import Drawer from "@mui/material/Drawer";
@@ -47,6 +48,7 @@ const Navbar = () => {
               {/* END the user menu with links to profile, login, logout   */}
 
               <Cart />
+
               <ThemeSwitch />
             </div>
           </div>
