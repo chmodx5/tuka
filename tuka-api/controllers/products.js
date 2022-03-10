@@ -51,6 +51,28 @@ module.exports.getSingleProduct = async (req, res) => {
   }
 };
 
+module.exports.searchProducts = async (req, res) => {
+  try {
+    //get the id from the request
+    //the id needs some validation : **note**
+    const appSearchQuery = req.params.search;
+    console.log(req.params.search);
+    const products = await prisma.product.findMany({
+      where: {
+        name: {
+          contains: appSearchQuery,
+        },
+      },
+      include: {
+        category: true,
+      },
+    });
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.getFeaturedProducts = async (req, res) => {
   try {
     const products = await prisma.product.findMany({});
