@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "./api/auth";
 import { useRouter } from "next/router";
 
-export default function Login() {
+export default function login() {
   const dispatch = useDispatch();
   const router = useRouter();
 

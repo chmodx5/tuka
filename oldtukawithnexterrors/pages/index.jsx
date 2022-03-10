@@ -5,7 +5,7 @@ import RecommendedProducts from "../components/RecommendedProducts/RecommendedPr
 import TrendingCollecions from "../components/TrendingCollections.jsx/TrendingCollecions";
 import axios from "axios";
 
-export default function Home() {
+export default function home() {
   const [products, setProducts] = useState(null);
   const [recommendedProducts, setRecommendedProducts] = useState(null);
 
@@ -36,6 +36,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <p>Lorem</p>
       <TrendingCollecions />
       <GroupedProducts getProducts={products} />
       <RecommendedProducts products={recommendedProducts} />

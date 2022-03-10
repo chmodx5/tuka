@@ -206,5 +206,3 @@ let products = [
     rating: { rate: 3.6, count: 145 },
   },
 ];
-
-export default products;

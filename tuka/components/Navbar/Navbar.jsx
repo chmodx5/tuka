@@ -5,12 +5,13 @@ import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import { FaTimes } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineUser } from "react-icons/ai";
+
 import Navmenu from "./Navmenu";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Search from "./Search";
 import Cart from "../Cart/Cart";
+import UsersMenu from "./UsersMenu";
 
 const Navbar = () => {
   const router = useRouter();
@@ -30,24 +31,26 @@ const Navbar = () => {
               </a>
             </Link>
           </div>
-
           {/* the search bar component  */}
           <div>
             <Search />
           </div>
 
+          {/* START right side of the navbar component ith other icon links  */}
+
           <div className="md:flex items-center hidden ">
             <div className=" flex space-x-2 ">
-              <Link href="/Login" passHref>
-                <a className="text-xl h-10 w-10 flex items-center justify-center ">
-                  <AiOutlineUser />
-                </a>
-              </Link>
+              {/* START the user menu with links to profile, login, logout   */}
+
+              <UsersMenu />
+
+              {/* END the user menu with links to profile, login, logout   */}
 
               <Cart />
               <ThemeSwitch />
             </div>
           </div>
+          {/* END right side of the navbar component ith other icon links  */}
 
           {/* mobile menu button */}
           <div className="relative md:hidden">
@@ -58,7 +61,6 @@ const Navbar = () => {
               <GiHamburgerMenu className="text-3xl" />
             </button>
           </div>
-
           {/* mobile menu  */}
           {mobilemenu && (
             <div className="absolute top-0 right-0 h-screen bg-white dark:bg-darkbackground shadow-xl w-10/12 px-6 py-6 md:hidden">
