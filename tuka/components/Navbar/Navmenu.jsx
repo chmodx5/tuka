@@ -1,17 +1,16 @@
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
 import Link from "next/link";
 
-const Navmenu = ({ icon, text }) => {
+const Navmenu = () => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/categories").then((response) => {
+    axios.get("http://localhost:3999/categories/").then((response) => {
       setCategory(response.data);
     });
-    console.log("category", category, "end category");
   }, []);
 
   return (
@@ -19,21 +18,13 @@ const Navmenu = ({ icon, text }) => {
       <Menu as="div" className="relative  inline-block text-left">
         <div>
           <Menu.Button className="inline-flex justify-center w-full px-2 py-2  font-semibold  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 uppercase items-center">
-            {icon ? (
-              <>
-                <span>{icon}</span>
-              </>
-            ) : (
-              <p>{text}</p>
-            )}
-            {!icon && (
-              <div
-                className="w-5 h-5 ml-2 -mr-1 text-xl hover:text-violet-100 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <HiChevronDown />
-              </div>
-            )}
+            categories
+            <div
+              className="w-5 h-5 ml-2 -mr-1 text-xl hover:text-violet-100 flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <HiChevronDown />
+            </div>
           </Menu.Button>
         </div>
         <Transition
@@ -49,7 +40,7 @@ const Navmenu = ({ icon, text }) => {
             <div className="px-1 py-1 min-w-max">
               {category ? (
                 category.map((category) => (
-                  <Menu.Item key={category}>
+                  <Menu.Item key={category.id}>
                     {({ active }) => (
                       <Link
                         passHref
