@@ -14,7 +14,7 @@
   @apply outline outline-2 px-4 py-2 rounded-sm uppercase font-semibold dark:bg-white dark:text-gray-900;
 }
 .app__card {
-  @apply bg-gray-100 shadow-md py-4 rounded;
+  @apply bg-gray-100 shadow-lg py-4 rounded;
 }
 .app__section {
   @apply py-10 px-6;

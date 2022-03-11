@@ -11,14 +11,19 @@ import {
   ListItemText,
   Slider,
 } from "@mui/material";
+import CategoryFilter from "../../components/SearchPage/CategoryFilter";
+import PriceRangeFilter from "../../components/SearchPage/PriceRangeFilter";
 
 const Search = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(null);
-  const [category, setCategory] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceRangeSlider, setPriceRangeSlider] = useState([5, 80]);
+
+  const [category, setCategory] = useState(null);
+  //states for filterting category
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
   //getting a list of all categories
   useEffect(() => {
     axios.get(`http://localhost:3999/categories/`).then((response) => {
@@ -42,123 +47,21 @@ const Search = () => {
     }
   }, [search]);
 
-  //handling the category check input
-  const handleCheckEvent = (e, categoryid) => {
-    let somearray = [...selectedCategories];
-    if (e.target.checked === true) {
-      let filtered = category.filter((item) => item.id === categoryid)[0];
-      somearray.push(filtered);
-      setSelectedCategories(somearray);
-      console.log(somearray);
-    } else {
-      let filtered = category.filter((item) => item.id === categoryid)[0];
-      somearray.splice(somearray.indexOf(filtered), 1);
-      setSelectedCategories(somearray);
-      console.log(somearray);
-    }
-  };
-
-  const handleChange = (event, newValue, activeThumb) => {
-    const minDistance = 10;
-
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setPriceRangeSlider([clamped, clamped + minDistance]);
-      } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setPriceRangeSlider([clamped - minDistance, clamped]);
-      }
-    } else {
-      setPriceRangeSlider(newValue);
-    }
-  };
-
-  useEffect(() => {}, []);
-
   return (
     <section className="grid grid-cols-12 gap-6 app__section">
-      <div className="col-span-4 md:col-span-4 lg:col-span-3 space-y-6 ">
+      <div className="col-span-12 md:col-span-4 lg:col-span-3 space-y-6 ">
         {/* START filter by category */}
-        <div className="app__card">
-          <h4 className="px-3 font-semibold">Category</h4>
-          <List dense>
-            {category && category.length > 0 && (
-              <>
-                {category.map((category) => {
-                  return (
-                    <ListItem
-                      key={[category.id]}
-                      className="hover:bg-primary group hover:text-white"
-                      secondaryAction={
-                        <Checkbox
-                          edge="end"
-                          className="group-hover:text-white"
-                          onChange={(e) => handleCheckEvent(e, category.id)}
-                          inputProps={{ "aria-labelledby": category.name }}
-                        />
-                      }
-                      disablePadding
-                    >
-                      <ListItemButton>
-                        <ListItemText id={category.id}>
-                          <span className="text-sm font-sans">
-                            <>{category.name}</>
-                          </span>
-                        </ListItemText>
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
-              </>
-            )}
-          </List>
-        </div>
+        <CategoryFilter
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+          category={category}
+        />
         {/* END filter by category */}
-
         {/* START filter by price range *with slider* */}
-        <div className="px-2 app__card ">
-          <div className="flex justify-between">
-            <h4 className=" font-semibold">Price range</h4>
-            <button className="app__btn text-sm capitalize text-gray-400 hover:text-black">
-              apply
-            </button>
-          </div>
-
-          <div className=" ">
-            <Slider
-              value={priceRangeSlider}
-              onChange={handleChange}
-              valueLabelDisplay="auto"
-              disableSwap
-              // color="primary"
-              colorPrimary
-              max={100000}
-              // getAriaValueText={valuetext}
-            />
-            <div className="flex justify-between">
-              <span>
-                <input
-                  className=" dark:bg-gray-900 outline-gray-300 focus:outline-primary outline-2 outline rounded-sm inline-block px-1 py-1 w-full text-xs"
-                  type="number"
-                  value={priceRangeSlider[0]}
-                />
-              </span>
-              <span className="px-1">-</span>
-              <span>
-                <input
-                  className="dark:bg-gray-900 outline-gray-300 focus:outline-primary outline-2 outline rounded-sm inline-block px-1 py-1 w-full text-xs"
-                  type="number"
-                  value={priceRangeSlider[1]}
-                />
-              </span>
-            </div>
-          </div>
-        </div>
+        <PriceRangeFilter
+          priceRangeSlider={priceRangeSlider}
+          setPriceRangeSlider={setPriceRangeSlider}
+        />
         {/* END filter by price range */}
       </div>
       <div className="col-span-8">
