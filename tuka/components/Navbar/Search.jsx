@@ -12,26 +12,26 @@ const Search = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setsearchQuery(e.target.value);
-
-    console.log(searchQuery);
-    if (searchQuery) {
+    if (searchQuery != null) {
+      console.log(searchQuery);
+      router.push(`/search/${searchQuery}`);
       //fetch search results using axios
-      let resultss = [];
+      // let resultss = [];
       // let resultss = [{ name: "test" }, { name: "test2" }];
-      axios
-        .get(`http://localhost:3999/products/search/${searchQuery}`)
-        .then((response) => {
-          setSearchResults(response.data);
-        });
+      // axios
+      //   .get(`http://localhost:3999/products/search/${searchQuery}`)
+      //   .then((response) => {
+      //     setSearchResults(response.data);
+      //   });
 
-      if (searchResults.length === 0) {
-        console.log("no results");
-      } else {
-        console.log(searchResults);
-        router.push(`/search/${searchQuery}`);
-      }
-    } else {
-      setSearchResults([]);
+      // if (searchResults !== null && searchResults.length === 0) {
+      //   console.log("no results");
+      // } else {
+      //   console.log(searchResults);
+      //   router.push(`/search/${searchQuery}`);
+      // }
+      // } else {
+      //   setSearchResults([]);
     }
   };
 
