@@ -13,14 +13,17 @@ import {
 } from "@mui/material";
 import CategoryFilter from "../../components/SearchPage/CategoryFilter";
 import PriceRangeFilter from "../../components/SearchPage/PriceRangeFilter";
+import GridSortOptions from "../../components/SearchPage/GridSortOptions";
 
 const Search = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const [priceRangeSlider, setPriceRangeSlider] = useState([5, 80]);
-
   const [category, setCategory] = useState(null);
+  //selceting active grid type
+  const [selectedGrid, setSelectedGrid] = useState(3);
+
   //states for filterting category
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -49,7 +52,7 @@ const Search = () => {
 
   return (
     <section className="grid grid-cols-12 gap-6 app__section">
-      <div className="col-span-12 md:col-span-4 lg:col-span-3 space-y-6 ">
+      <div className="col-span-4 md:col-span-4 lg:col-span-3 space-y-6 ">
         {/* START filter by category */}
         <CategoryFilter
           selectedCategories={selectedCategories}
@@ -64,9 +67,16 @@ const Search = () => {
         />
         {/* END filter by price range */}
       </div>
-      <div className="col-span-8">
-        {/* START search results */}
+      {/* START search results */}
+      <div className="col-span-12">
         {/* START top section with sort options */}
+        <div className="flex justify-between">
+          <div>drop down</div>
+          <GridSortOptions
+            selectedGrid={selectedGrid}
+            setSelectedGrid={setSelectedGrid}
+          />
+        </div>
         {/* START sort options */}
         {/* END sort options */}
         {/* START grid customization option */}
@@ -76,9 +86,8 @@ const Search = () => {
         {/* END search results list */}
         {/* START pagination */}
         {/* END pagination */}
-        {/* END search results */}
-        adipisci nam optio sapiente praesentium quibusdam neque.
       </div>
+      {/* END search results */}
     </section>
   );
 };
