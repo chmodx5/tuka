@@ -74,10 +74,10 @@
 .MuiSlider-valueLabelCircle {
   @apply bg-primary py-0 px-0;
 }
-
 .Mui-active {
   @apply h-4 w-4 shadow-none active:shadow-none;
 }
+
 /* -------------------END custom mui styles------------------ */
 
 /* -------------------START navbar------------------ */
