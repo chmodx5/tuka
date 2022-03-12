@@ -6,6 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import CategoryFilter from "../../components/SearchPage/CategoryFilter";
 import PriceRangeFilter from "../../components/SearchPage/PriceRangeFilter";
 import GridSortOptions from "../../components/SearchPage/GridSortOptions";
+import Product from "../../components/Product/Product";
 
 const Search = () => {
   const router = useRouter();
@@ -49,7 +50,7 @@ const Search = () => {
   }, [search]);
 
   return (
-    <section className="grid grid-cols-12 gap-6 app__section">
+    <section className="grid grid-cols-12 gap-6 app__section font-sans">
       <div className="col-span-4 md:col-span-4 lg:col-span-3 space-y-6 ">
         {/* START filter by category */}
         <CategoryFilter
@@ -93,7 +94,7 @@ const Search = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute w-auto mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none">
+                  <Menu.Items className="absolute w-auto mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none z-40">
                     <div className="px-1 py-1 min-w-max">
                       {category ? (
                         [
@@ -158,23 +159,55 @@ const Search = () => {
         {/* END top section with sort options */}
 
         {/* START search results list */}
-        <div
-          className={`grid ${
-            selectedGrid == 2
-              ? "grid-cols-2"
-              : selectedGrid == 3
-              ? "grid-cols-3"
-              : selectedGrid == 4
-              ? "grid-cols-4"
-              : selectedGrid == 5
-              ? "grid-cols-5"
-              : "grid-cols-1"
-          } grid-cols-2 gap-6`}
-        >
-          {Array.from({ length: 12 }, (_, i) => (
-            <div key={i} className="w-full bg-gray-500 aspect-square"></div>
-          ))}
+        <div>
+          <div className="mb-2">
+            <small className="mb-2">
+              {searchResults ? (
+                <>
+                  Results for
+                  <span className="font-semibold"> {router.query.search} </span>
+                  <span className=" italic">{searchResults.length} </span>
+                  items
+                </>
+              ) : (
+                <>
+                  <span>not found</span>
+                </>
+              )}
+            </small>
+          </div>
+          <div
+            className={`grid ${
+              selectedGrid == 2
+                ? "grid-cols-2"
+                : selectedGrid == 3
+                ? "grid-cols-3"
+                : selectedGrid == 4
+                ? "grid-cols-4"
+                : selectedGrid == 5
+                ? "grid-cols-5"
+                : "grid-cols-1"
+            } grid-cols-2 gap-6`}
+          >
+            {searchResults ? (
+              searchResults.map((product) => (
+                <span>
+                  <Product
+                    key={product.id}
+                    id={product.id}
+                    category={product.category.name}
+                    img={product.image}
+                    price={product.price}
+                    title={product.name}
+                  />
+                </span>
+              ))
+            ) : (
+              <span>loading ..</span>
+            )}
+          </div>
         </div>
+
         {/* END search results list */}
 
         {/* START pagination */}
